@@ -14,6 +14,7 @@ let users = [
   { id: '4', name: 'sidney', email: 'sidney@me.com', password: '123' },
   { id: '5', name: 'canton', email: 'canton@me.com', password: '123' },
 ];
+
 app.use(morgan('dev'));
 // app.use(timer);
 // app.use(logger)
@@ -23,12 +24,17 @@ app.use(morgan('dev'));
 // app.get('/', (req, res) => {
 //   res.send('Hello Express App')
 // })
+
 app.get('/api/v1', (req, res) => {
   return res.status(200).json({ confirmation: 'success', users });
 });
+
 app.get('/api/v1/:id', (req, res) => {
-  res.send(req.params.id);
+  const user = users.filter(user => {user == req.params.id});
+  res.status(200).json({confirmation: 'success', user});
+  //res.send(req.params.id);
 });
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
