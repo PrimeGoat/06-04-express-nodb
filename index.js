@@ -10,7 +10,6 @@ const users = require('./models/users');
 // const timer = require('./middlewares/timer');
 const port = process.env.PORT || 8080;
 
-
 app.use(morgan('dev'));
 // app.use(timer);
 // app.use(logger)
@@ -21,20 +20,20 @@ app.use(morgan('dev'));
 //   res.send('Hello Express App')
 // })
 
-app.get('/api/v1', (req, res) => {
-  return res.status(200).json({ confirmation: 'success', users });
-});
+// app.get('/api/v1', (req, res) => {
+//   return res.status(200).json({ confirmation: 'success', users });
+// });
 
-app.get('/api/v1/:id', (req, res) => {
-  const user = users.filter(user => user.id === req.params.id);
+// app.get('/api/v1/:id', (req, res) => {
+//   const user = users.filter(user => user.id === req.params.id);
 
-  if(user.length == 0) {
-    return res.status(404).json({confirmation: 'failed', message: "User not found"});
-  }
+//   if(user.length == 0) {
+//     return res.status(404).json({confirmation: 'failed', message: "User not found"});
+//   }
 
-  return res.status(200).json({confirmation: 'success', user});
-  //res.send(req.params.id);
-});
+//   return res.status(200).json({confirmation: 'success', user});
+//   //res.send(req.params.id);
+// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
