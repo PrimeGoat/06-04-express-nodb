@@ -4,16 +4,12 @@ const path = require('path');
 const morgan = require('morgan');
 require('dotenv').config();
 
+const users = require('./models/users');
+
 // const logger = require('./middlewares/logger');
 // const timer = require('./middlewares/timer');
 const port = process.env.PORT || 8080;
-let users = [
-  { id: '1', name: 'jd', email: 'jd@me.com', password: '123' },
-  { id: '2', name: 'paul', email: 'paul@me.com', password: '123' },
-  { id: '3', name: 'lois', email: 'lois@me.com', password: '123' },
-  { id: '4', name: 'sidney', email: 'sidney@me.com', password: '123' },
-  { id: '5', name: 'canton', email: 'canton@me.com', password: '123' },
-];
+
 
 app.use(morgan('dev'));
 // app.use(timer);
