@@ -4,15 +4,19 @@ const path = require('path');
 const morgan = require('morgan');
 require('dotenv').config();
 
-const users = require('./models/users');
+const userRouter = require('./routes/userRoutes.js');
 
-// const logger = require('./middlewares/logger');
-// const timer = require('./middlewares/timer');
-const port = process.env.PORT || 8080;
+const logger = require('./middlewares/logger');
+const timer = require('./middlewares/timer');
+const port = process.env.PORT || 3000;
 
-app.use(morgan('dev'));
-// app.use(timer);
-// app.use(logger)
+app.use(logger);
+//app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/api/v1', userRouter); // Parent route
+
+
 // this hooks up use of static routes
 // app.use(express.static(path.join(__dirname, 'public')))
 // sends string to browser
